@@ -1,4 +1,4 @@
 addpath(genpath('.'))
-TrafficSignDetection('/home/ihcv00/DataSet/train', 'normrgb', 'SlidingWindow', 'TemplateMatching');
+TrafficSignDetection('/home/mcv00/DataSet/train', 'normrgb', 'SlidingWindow', 'TemplateMatching');
 
 

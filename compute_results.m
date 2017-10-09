@@ -3,10 +3,11 @@
 
     addpath(genpath('.'))
 
-    teams             = [1,2,3,4,5,6,7,8];
+    %teams             = [1,2,3,4,5,6,7,8];
+    teams             = [1,5,7];
     %teams = [3]
-    week              = 5;
-    window_evaluation = 1; 
+    week              = 1;
+    window_evaluation = 0; 
 
 
     % Open files to store evaluation results
@@ -18,12 +19,12 @@
     end
 
     % Directory where the GT masks and text annotations reside
-    test_dir   = '/home/ihcv00/DataSetCorrected/test/';
+    test_dir   = '/home/mcv00/DataSet/test/';
     test_files = ListFiles(test_dir);
 
     % Loop for all teams
     for jj=1: length(teams),
-        results_dir = sprintf('/home/ihcv%02d/m1-results/week%d/test', teams(jj), week );
+        results_dir = sprintf('/home/mcv%02d/m1-results/week%d/test', teams(jj), week );
 
         pixelTP=0; pixelFN=0; pixelFP=0; pixelTN=0;
 	windowTP=0; windowFN=0; windowFP=0; 
@@ -40,8 +41,15 @@
 	    for ii=1:size(result_files,1),
 
 		% Read mask file
-		candidate_masks_name = fullfile(results_dir, methods(kk).name, result_files(ii).name);
-		pixelCandidates = imread(candidate_masks_name)>0;
+                results_dir
+		methods(kk).name
+		result_files(ii).name
+		     
+		%candidate_masks_name = fullfile(results_dir, methods(kk).name, result_files(ii).name);
+		candidate_masks_name = fullfile(results_dir, result_files(ii).name);
+
+
+                pixelCandidates = imread(candidate_masks_name)>0;
 
 		% Accumulate pixel performance of the current image %%%%%%%%%%%%%%%%%
 		[pathstr,name,ext] = fileparts(test_files(ii).name);
@@ -62,7 +70,7 @@
 		    load(mat_name);
 		    if size(windowCandidates,2) > 1 && size(windowCandidates,1) == 1,
 		       sprintf('Warning! (team %d): transposed window list', jj);
-		       windowCandidates = windowCandidates';
+		       windowCandidates = windowCandidates';  %'
                     end
 
 		    gt_annotations_name = fullfile(test_dir, 'gt', ['gt.' name '.txt']);
