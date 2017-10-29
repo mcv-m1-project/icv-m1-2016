@@ -6,13 +6,13 @@
 
     % Configure this
     team              = 3;  % Your team number
-    week              = 2;  % Week number
+    week              = 2  % Week number
     window_evaluation = 0;  % Whether to perform or not window evaluation: 0 for weeks 1&2, 1 for weeks 3,4&5 
 
 
     % Do not make changes below this point ---------------------------------
     % If you find a bug, please report it to ramon.morros@upc.edu ----------
-    test_dir   = '/home/mcv00/DataSetCorrected/fake_test/';  % This folder contains fake masks and text annotations. Do not change this.
+    test_dir   = '/home/mcv00/DataSet/fake_test/';  % This folder contains fake masks and text annotations. Do not change this.
     test_files = ListFiles(test_dir);
 
     test_files_num = size(test_files,1);
